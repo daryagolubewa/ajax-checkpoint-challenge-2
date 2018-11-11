@@ -115,7 +115,7 @@ form {
 }
 
 .flex {
-  display: flex;
+    display: flex;
 }
 
 .flex-column {
@@ -164,10 +164,20 @@ form {
     opacity: 0.88;
   }
 
+  #btn-submit {
+      display: none;
+  }
+
+  #btn-add {
+      display: block;
+  }
+
+
 .input-group {
   padding: 0 .5em;
   display: flex;
   flex-direction: row-reverse;
+  margin: 0px;
 }
 
 .input-group-label {
@@ -192,4 +202,8 @@ form {
 
   .input-group-input:focus + .input-group-label {
     color: #428bca;
+  }
+
+  .form-block {
+    display: none;
   }
