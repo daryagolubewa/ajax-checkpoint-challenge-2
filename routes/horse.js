@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const models = require('./../models/index');
 const Horse = models.horse;
+const Serializer = require('sequelize-to-json');
 let error = '';
 
 router.get('/', async function(req, res) {
@@ -20,12 +21,16 @@ router.post('/add', function(req, res) {
         age: req.body.age
     }).then(() => {
         return Horse.findAll({
-            where: req.body.name,
-            breed: req.body.breed,
-            age: req.body.age
+            where: {
+                name: req.body.name,
+                breed: req.body.breed,
+                age: req.body.age
+            }
         });
     }).then((horses) => {
-        res.send(200).json(JSON.parse(horses[0]));
+        let serializer = new Serializer(Horse);
+        let postAsJSON = serializer.serialize(horses[0]);
+        res.status(200).json(postAsJSON);
     })
     //     .catch((err) => {
     //     error = err;
