@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const horseName = document.getElementById('horse-name').value;
         const horseAge = document.getElementById('horse-age').value;
         const horseBreed = document.getElementById('horse-breed').value;
-        const list = document.getElementsByClassName('list')[0];
+        const list = document.getElementsByClassName('list');
 
         let response = await fetch('/horse/add', {
             method: 'post',
@@ -47,39 +47,29 @@ document.addEventListener('DOMContentLoaded', () => {
         response = await response;
         if(response.status === 200) {
             let horse = await response.json();
-            // let templateString = document.querySelector('.list-item');
-            // let template = Handlebars.compile(templateString);
-            // let html = template(horse);
+            let templateString = document.getElementById('horseTemplate').innerHTML;
+            let template = Handlebars.compile(templateString);
+            let html = template(horse);
+            list[0].insertAdjacentHTML( 'beforeend', html);
             // const horseField = document.querySelector('.list');
             // horseField.innerHTML = html;
-            let newLi = document.createElement('li');
-            newLi.classList.add('list-item');
-            newLi.classList.add('col-1-2');
-            let newA = document.createElement('a');
-            newLi.appendChild(newA)
-            newLi.classList.add('big');
-            newLi.classList.add('fancy-text');
-            newLi.classList.add('light-link');
-            newA.href = `/horses/${horseName}`;
-            newA.innerHTML = horseName;
-            list.appendChild(newLi);
+            // let newLi = document.createElement('li');
+            // newLi.classList.add('list-item');
+            // newLi.classList.add('col-1-2');
+            // let newA = document.createElement('a');
+            // newLi.appendChild(newA)
+            // newLi.classList.add('big');
+            // newLi.classList.add('fancy-text');
+            // newLi.classList.add('light-link');
+            // newA.href = `/horses/${horseName}`;
+            // newA.innerHTML = horseName;
+            // list.appendChild(newLi);
 
 
             form.style.display = 'none';
             btnSbm.style.display = 'none';
             btnAdd.style.display = 'block';
-            // res.json(JSON.stringify(horses[0]))
+
         }
-        // else {
-        //     error.style.display = "inline"
-        // }
     })
-
-
 });
-// let questId = e.target.id;
-// let response = await fetch(questions?id=${questId});
-//
-// let question = await response.text();
-// const questField = document.getElementById('question');
-// questField.innerText = question;
