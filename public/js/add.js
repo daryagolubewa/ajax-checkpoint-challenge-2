@@ -51,20 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let template = Handlebars.compile(templateString);
             let html = template(horse);
             list[0].insertAdjacentHTML( 'beforeend', html);
-            // const horseField = document.querySelector('.list');
-            // horseField.innerHTML = html;
-            // let newLi = document.createElement('li');
-            // newLi.classList.add('list-item');
-            // newLi.classList.add('col-1-2');
-            // let newA = document.createElement('a');
-            // newLi.appendChild(newA)
-            // newLi.classList.add('big');
-            // newLi.classList.add('fancy-text');
-            // newLi.classList.add('light-link');
-            // newA.href = `/horses/${horseName}`;
-            // newA.innerHTML = horseName;
-            // list.appendChild(newLi);
-
 
             form.style.display = 'none';
             btnSbm.style.display = 'none';
